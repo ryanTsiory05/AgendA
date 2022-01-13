@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}AgendA - Vue élément
+{% endblock %}
+
+{% block body %}
+	<h2 style="color:grey" class="pt-5 pb-3">Elément calendrier</h2>
+
+	<table class="table table-dark">
+		<tbody>
+
+			<tr>
+				<th>Date et heure</th>
+				<td>{{ entretien.date|date("d/m/Y")}}
+					à
+					{{ entretien.heure|date("H:i")}}</td>
+			</tr>
+
+			<tr>
+				<th>Lieu</th>
+				<td>{{ entretien.lieu}}</td>
+			</tr>
+			<tr>
+				<th>Candidat</th>
+				<td>{{ entretien.candidat.nom}}
+					{{ entretien.candidat.prenom}}</td>
+			</tr>
+			<tr>
+				<th>Backgroundcolor</th>
+				<td>{{ entretien.candidat.email}}</td>
+			</tr>
+			<tr>
+				<th>Backgroundcolor</th>
+				<td>{{ calendar.backgroundcolor }}</td>
+			</tr>
+			<tr>
+				<th>Textcolor</th>
+				<td>{{ calendar.textcolor }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" href="{{ path('calendar_index') }}">Retour  à la liste</a>
+
+{% endblock %}

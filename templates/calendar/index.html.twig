@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AgendA - Index
+{% endblock %}
+
+{% block body %}
+	<h2 style="color:grey" class="pt-5 pb-3">Calendrier index</h2>
+
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Backgroundcolor</th>
+				<th>Textcolor</th>
+				<th>Date</th>
+				<th>Heure</th>
+				<th>Lieu</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Email</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for calendar in calendars %}
+				<tr>
+					<td>{{ calendar.backgroundcolor }}</td>
+					<td>{{ calendar.textcolor }}</td>
+					<td>{{ calendar.entretien.date|date("d/m/Y") }}</td>
+					<td>{{ calendar.entretien.heure|date("H:i") }}</td>
+					<td>{{ calendar.entretien.lieu }}</td>
+					<td>{{ calendar.entretien.candidat.nom }}</td>
+					<td>{{ calendar.entretien.candidat.prenom }}</td>
+					<td>{{ calendar.entretien.candidat.email }}</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('calendar_show', {'id': calendar.id}) }}">Détails →</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune donnée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

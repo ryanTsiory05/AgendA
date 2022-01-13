@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AgendA - Liste Candidat
+{% endblock %}
+
+{% block body %}
+	<h2 style="color:grey" class="pt-5 pb-3">Liste candidats</h2>
+
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Email</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for candidat in candidats %}
+				<tr>
+
+					<td>{{ candidat.nom }}</td>
+					<td>{{ candidat.prenom }}</td>
+					<td>{{ candidat.email }}</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('liste_entretien_candidat', {'id': candidat.id}) }}">Voir les entretiens →</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune donnée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

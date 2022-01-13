@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% form_theme formCandidat 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}AgendA - Ajout Entretien
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-4 mt-4">
+				<div class="card bg-primary p-3">
+					<h4 style="text-align: center">Ajout nouveau candidat</h4><hr>
+
+					{{ form_start(formCandidat) }}
+					{{ form_row(formCandidat.nom, {'attr': { 'placeholder': "Nom du candidat"}}) }}
+					{{ form_row(formCandidat.prenom, {'attr': { 'placeholder': "Prenom du candidat"}}) }}
+					{{ form_row(formCandidat.email, {'attr': { 'placeholder': "Email du candidat"}}) }}
+					<hr>
+					<button type="submit" class="btn btn-secondary col-12">Ajouter</button>
+					{{ form_end(formCandidat) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
