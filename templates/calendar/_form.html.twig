@@ -10,7 +10,9 @@
 				<div class="card bg-primary p-3">
 					<h4>Couleur entretien sur calendrier</h4><hr>
 					{{ form_start(form) }}
-					{{ form_widget(form) }}
+					{{ form_row(form.backgroundcolor) }}
+					{{ form_row(form.textcolor) }}
+					{{ form_row(form.entretien, {'attr': { 'disabled': ""}}) }}
 					<hr>
 					<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
 					{{ form_end(form) }}

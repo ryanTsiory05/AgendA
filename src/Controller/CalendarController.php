@@ -63,6 +63,42 @@ class CalendarController extends AbstractController
     }
 
 
+    /**
+     * @Route("/new/{id}", name="calendarC_new", methods={"GET", "POST"})
+     */
+    public function newC(Request $request, EntityManagerInterface $entityManager, EntretienRepository $entretienRepository, candidatRepository $candidatRepository, $id): Response
+    {
+        $entretien = $entretienRepository->findOneBy(array('id' => $id));
+
+
+
+        $calendar = new Calendar();
+        $calendar->setEntretien($entretien);
+        $calendar->getEntretien()->getCandidat()->getId();
+
+        $form = $this->createForm(CalendarType::class, $calendar);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $calendar->setEntretien($entretien);
+            $entityManager->persist($calendar);
+            $entityManager->flush();
+
+
+            $id = $calendar->getEntretien()->getCandidat();
+
+            return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return
+            $this->renderForm('calendar/new.html.twig', [
+                'calendar' => $calendar,
+                'form' => $form
+
+            ]);
+    }
+
+
 
 
 

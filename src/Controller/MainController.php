@@ -60,7 +60,7 @@ class MainController extends AbstractController
                 'end' => $end,
                 'description' => $event->getEntretien()->getLieu(),
                 'candidat' => $event->getEntretien()->getCandidat()->getId(),
-                'title' => "Entretien - " . $event->getEntretien()->getCandidat()->getNom(),
+                'title' => "Entretien - " . $event->getEntretien()->getCandidat()->getNom() . " " . $event->getEntretien()->getLieu(),
                 'prenom' => $event->getEntretien()->getCandidat()->getPrenom(),
                 'email' => $event->getEntretien()->getCandidat()->getEmail()
 

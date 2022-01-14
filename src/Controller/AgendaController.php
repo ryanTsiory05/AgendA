@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-
+use App\Controller\CalendarController;
+use App\Entity\Calendar;
 use App\Entity\Candidat;
 use App\Entity\Entretien;
+use App\Form\CalendarType;
 use App\Repository\CandidatRepository;
 use App\Repository\EntretienRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -89,6 +91,7 @@ class AgendaController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/ajout_entretien_c/{id}", name="ajout_entretien_c")
      */
@@ -112,7 +115,12 @@ class AgendaController extends AbstractController
 
             $manager->persist($entretien);
             $manager->flush();
-            return $this->redirectToRoute('calendar_new');
+
+            $id = $entretien->getId();
+
+            return $this->redirectToRoute('calendarC_new', [
+                'id' => $id
+            ]);
         }
         return $this->render('agenda/ajout_entretienC.html.twig', [
             'form' => $form->createView(),
